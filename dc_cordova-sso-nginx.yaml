@@ -1,0 +1,69 @@
+apiVersion: v1
+kind: DeploymentConfig
+metadata:
+  annotations:
+    openshift.io/generated-by: OpenShiftNewApp
+  creationTimestamp: null
+  generation: 10
+  labels:
+    app: redhat-sso-nginx
+  name: redhat-sso-nginx
+spec:
+  replicas: 1
+  selector:
+    app: redhat-sso-nginx
+    deploymentconfig: redhat-sso-nginx
+  strategy:
+    resources: {}
+    rollingParams:
+      intervalSeconds: 1
+      maxSurge: 25%
+      maxUnavailable: 25%
+      timeoutSeconds: 600
+      updatePeriodSeconds: 1
+    type: Rolling
+  template:
+    metadata:
+      annotations:
+        openshift.io/generated-by: OpenShiftNewApp
+      creationTimestamp: null
+      labels:
+        app: redhat-sso-nginx
+        deploymentconfig: redhat-sso-nginx
+    spec:
+      containers:
+      - env:
+        - name: TZ
+          value: Europe/Berlin
+        imagePullPolicy: Always
+        name: redhat-sso-nginx
+        ports:
+        - containerPort: 8080
+          name: web
+          protocol: TCP
+        resources:
+          limits:
+            cpu: 500m
+            memory: 1000Mi
+          requests:
+            cpu: 500m
+            memory: 750Mi
+        terminationMessagePath: /dev/termination-log
+      dnsPolicy: ClusterFirst
+      restartPolicy: Always
+      securityContext: {}
+      serviceAccount: jenkins
+      serviceAccountName: jenkins
+      terminationGracePeriodSeconds: 30
+  test: false
+  triggers:
+  - type: ConfigChange
+  - imageChangeParams:
+      automatic: true
+      containerNames:
+      - redhat-sso-nginx
+      from:
+        kind: ImageStreamTag
+        name: redhat-sso-nginx:latest
+    type: ImageChange
+    

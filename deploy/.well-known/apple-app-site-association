@@ -1,0 +1,14 @@
+{
+  "applinks": {
+    "apps": [],
+    "details": [
+      {
+        "appID": "43QYKNYCRK.org.keycloak.examples.cordova",
+        "paths": [
+          "/login",
+          "/logout"
+        ]
+      }
+    ]
+  }
+}
