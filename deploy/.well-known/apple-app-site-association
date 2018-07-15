@@ -5,13 +5,8 @@
       {
         "appID": "43QYKNYCRK.com.lufthansa.app.lht",
         "paths": [
-          "*"
-        ]
-      },
-      {
-        "appID": "43QYKNYCRK.com.lufthansa.app.lht2",
-        "paths": [
-          "*"
+          "/login",
+          "/logout"
         ]
       }
     ]

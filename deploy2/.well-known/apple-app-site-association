@@ -1,0 +1,14 @@
+{
+  "applinks": {
+    "apps": [],
+    "details": [
+      {
+        "appID": "43QYKNYCRK.com.lufthansa.app.lht2",
+        "paths": [
+          "/login",
+          "/logout"
+        ]
+      }
+    ]
+  }
+}
