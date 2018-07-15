@@ -5,8 +5,7 @@
       {
         "appID": "43QYKNYCRK.com.lufthansa.app.lht",
         "paths": [
-          "/login",
-          "/logout"
+          "*"
         ]
       }
     ]

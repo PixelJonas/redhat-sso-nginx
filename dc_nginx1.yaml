@@ -6,13 +6,13 @@ metadata:
   creationTimestamp: null
   generation: 10
   labels:
-    app: redhat-sso-nginx
-  name: redhat-sso-nginx
+    app: nginx1
+  name: nginx1
 spec:
   replicas: 1
   selector:
-    app: redhat-sso-nginx
-    deploymentconfig: redhat-sso-nginx
+    app: nginx1
+    deploymentconfig: nginx1
   strategy:
     resources: {}
     rollingParams:
@@ -28,32 +28,30 @@ spec:
         openshift.io/generated-by: OpenShiftNewApp
       creationTimestamp: null
       labels:
-        app: redhat-sso-nginx
-        deploymentconfig: redhat-sso-nginx
+        app: nginx1
+        deploymentconfig: nginx1
     spec:
       containers:
       - env:
         - name: TZ
           value: Europe/Berlin
         imagePullPolicy: Always
-        name: redhat-sso-nginx
+        name: nginx1
         ports:
         - containerPort: 8080
           name: web
           protocol: TCP
         resources:
           limits:
-            cpu: 500m
-            memory: 1000Mi
+            cpu: 100m
+            memory: 100Mi
           requests:
-            cpu: 500m
-            memory: 750Mi
+            cpu: 100m
+            memory: 100Mi
         terminationMessagePath: /dev/termination-log
       dnsPolicy: ClusterFirst
       restartPolicy: Always
       securityContext: {}
-      serviceAccount: jenkins
-      serviceAccountName: jenkins
       terminationGracePeriodSeconds: 30
   test: false
   triggers:
@@ -61,9 +59,8 @@ spec:
   - imageChangeParams:
       automatic: true
       containerNames:
-      - redhat-sso-nginx
+      - nginx1
       from:
         kind: ImageStreamTag
-        name: redhat-sso-nginx:latest
+        name: nginx1:latest
     type: ImageChange
-    

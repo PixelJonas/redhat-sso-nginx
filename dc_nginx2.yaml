@@ -43,17 +43,15 @@ spec:
           protocol: TCP
         resources:
           limits:
-            cpu: 500m
-            memory: 1000Mi
+            cpu: 100m
+            memory: 100Mi
           requests:
-            cpu: 500m
-            memory: 750Mi
+            cpu: 100m
+            memory: 100Mi
         terminationMessagePath: /dev/termination-log
       dnsPolicy: ClusterFirst
       restartPolicy: Always
       securityContext: {}
-      serviceAccount: jenkins
-      serviceAccountName: jenkins
       terminationGracePeriodSeconds: 30
   test: false
   triggers:

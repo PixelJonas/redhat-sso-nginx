@@ -1,0 +1,59 @@
+{
+  "kind": "BuildConfig",
+  "apiVersion": "v1",
+  "metadata": {
+    "name": "nginx1",
+    "creationTimestamp": null,
+    "labels": {
+      "app": "nginx1"
+    },
+    "annotations": {
+      "openshift.io/generated-by": "OpenShiftNewApp"
+    }
+  },
+  "spec": {
+    "triggers": [
+      {
+        "type": "ImageChange",
+        "imageChange": {}
+      },
+      {
+        "type": "ConfigChange"
+      }
+    ],
+    "runPolicy": "Serial",
+    "source": {
+      "type": "Git",
+      "git": {
+        "uri": "https://github.com/PixelJonas/redhat-sso-nginx.git",
+        "ref": "master"
+      },
+      "contextDir": "/deploy",
+      "sourceSecret": {
+        "name": "sourcesecret"
+      }
+    },
+    "strategy": {
+      "type": "Source",
+      "sourceStrategy": {
+        "from": {
+          "kind": "ImageStreamTag",
+          "name": "nginx-112-rhel7:latest"
+        },
+        "forcePull": true
+      }
+    },
+    "output": {
+      "to": {
+        "kind": "ImageStreamTag",
+        "name": "nginx1:latest"
+      }
+    },
+    "resources": {},
+    "postCommit": {},
+    "nodeSelector": null
+  },
+  "status": {
+    "lastVersion": 0
+  }
+}
